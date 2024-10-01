@@ -1,0 +1,48 @@
+.product-list img{
+    width: 53%;
+    text-align: center;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap to the next line */
+    justify-content: space-between; /* Adds space between the items */
+    gap: 10px; /* Adds a gap between items */
+    padding: 10px; /* Optional padding for better alignment */
+  }
+  
+  .product-item {
+    flex: 1 1 calc(20% - 10px); /* Each product takes up 20% of the width, minus the gap */
+    max-width: calc(20% - 10px); /* Ensures the item does not exceed 20% of the row width */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+    margin-bottom: 20px; /* Adds space below each product */
+  }
+  
+  @media (max-width: 1200px) {
+    .product-item {
+      flex: 1 1 calc(25% - 10px); /* 4 items per row on medium-sized screens */
+      max-width: calc(25% - 10px);
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .product-item {
+      flex: 1 1 calc(33.333% - 10px); /* 3 items per row on smaller screens */
+      max-width: calc(33.333% - 10px);
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .product-item {
+      flex: 1 1 calc(50% - 10px); /* 2 items per row on small screens */
+      max-width: calc(50% - 10px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .product-item {
+      flex: 1 1 100%; /* 1 item per row on very small screens */
+      max-width: 100%;
+    }
+  }
+  
