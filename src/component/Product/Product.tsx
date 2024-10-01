@@ -1,54 +1,35 @@
 import React from 'react';
-import './Product.css';
+import './Product.css'
 
-type ProductType = {
-  id: number;
-  title: string;
-  price: string;
-  category: string;
-  description: string;
-  image: string;
+type ProductProps = {
+  productData: {
+    id: number;
+    title: string;
+    price: string;
+    category: string;
+    description: string;
+    image: string;
+    isFeatured: boolean;
+  }[];
 };
-
-interface ProductProps {
-  productData: ProductType[]; // Define the prop type for an array of ProductType
-}
 
 const Product: React.FC<ProductProps> = ({ productData }) => {
   return (
     <div className="product-list">
-      {productData.map(product => (
-        <div key={product.id} className="text-center max-w-sm w-30 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <a href="#" className='text-center'>
-            <img className="rounded-t-lg w-25 mx-auto" src={product.image} alt={product.title} />
-          </a>
-          <div className="p-5">
-            <a href="#">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{product.title}</h5>
-            </a>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{product.description}</p>
-            <p className="text-lg font-bold text-gray-800 dark:text-white">${product.price}</p>
-            <a
-              href="#"
-              className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Read more
-              <svg
-                className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9"
-                />
-              </svg>
-            </a>
+      {productData.map((product) => (
+        <div key={product.id} className="product-item">
+          {/* Featured Label */}
+          {product.isFeatured && <span className="featured">FEATURED</span>}
+          
+          {/* Product Image */}
+          <img src={product.image} alt={product.title} className='w-60 h-48' />
+
+          {/* Product Info */}
+          <div className="product-info">
+            <h5>₹ {product.price}</h5>
+            <p className="product-price">{product.title}</p>
+            <p>{product.category}</p>
+            {/* <p>{product.description}</p> */}
           </div>
         </div>
       ))}

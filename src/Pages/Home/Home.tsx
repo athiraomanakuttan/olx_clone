@@ -3,6 +3,7 @@ import Menubar from '../../component/Menubar/Menubar';
 import Navbar from '../../component/Navbar/Navbar';
 import './Home.css';
 import Product from '../../component/Product/Product';
+import Footer from '../../component/Footer/Footer';
 
 type ProductType = {
   id: number;
@@ -11,6 +12,7 @@ type ProductType = {
   category: string;
   description: string;
   image: string;
+  isFeatured: boolean;
 };
 
 const allProducts = async (): Promise<ProductType[]> => {
@@ -41,6 +43,7 @@ const Home = () => {
       <Navbar />
       <Menubar />
       <Product productData={products} />
+      <Footer/>
     </div>
   );
 };
