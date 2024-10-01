@@ -1,13 +1,29 @@
-import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import icon from '../../assets/slider-1.png'
 import './Login.css'
-const Login = () => {
-  const [isOpen, setIsOpen] = useState(true);
+import { signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider } from '../../Firebase';
 
+type funType ={
+    setLoginPop: React.Dispatch<React.SetStateAction<Boolean>>
+}
+
+
+
+const Login = ({setLoginPop}:funType) => {
+    const googleSignin = async ()=>{
+        try{
+            await signInWithPopup(auth,googleProvider)
+            setLoginPop(false)
+        }
+        catch(err)
+        {
+            console.log(err)
+        }
+    }
   return (
     <div>
-      <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-10">
+      <Dialog open={true} onClose={() => setLoginPop(false)} className="relative z-10">
         {/* Background overlay */}
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
@@ -21,7 +37,7 @@ const Login = () => {
                   {/* Close button */}
                   <button
                     className="text-gray-400 hover:text-gray-600 focus:outline-none"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => setLoginPop(false)}
                   >
                     <span className="sr-only">Close</span>
                     &#10005;
@@ -56,11 +72,12 @@ const Login = () => {
                       Continue with phone
                     </button>
 
-                    <button className="mt-3 w-full flex items-center justify-center px-4 py-3 border border-gray-300 text-base font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none">
+                    <button className="mt-3 w-full flex items-center justify-center px-4 py-3 border border-gray-300 text-base font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"  onClick={googleSignin}>
                       <img
                         src="https://www.google.com/favicon.ico"
                         alt="Google Logo"
                         className="w-5 h-5 mr-2"
+                       
                       />
                       Continue with Google
                     </button>

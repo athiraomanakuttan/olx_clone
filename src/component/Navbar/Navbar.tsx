@@ -33,7 +33,7 @@ const Navbar = () => {
        </div>
        
     </div>
-    {loginPop ? <Login/> : null}
+    {loginPop ? <Login setLoginPop={setLoginPop}/> : null}
    
     </>
   )
