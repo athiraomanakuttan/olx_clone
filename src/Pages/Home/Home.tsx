@@ -23,6 +23,8 @@ const allProducts = async (): Promise<ProductType[]> => {
 
 const Home = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
+  const [search,setSearch]= useState<string>("")
+  const [menu,setMenu]= useState<string>("")
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -40,9 +42,9 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar />
-      <Menubar />
-      <Product productData={products} />
+      <Navbar setSearch={setSearch}/>
+      <Menubar  setMenu={setMenu}/>
+      <Product productData={products} search={search} menu={menu}/>
       <Footer/>
     </div>
   );

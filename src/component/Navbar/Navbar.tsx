@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import Login from '../Login/Login'
 import './Navbar.css'
-
-const Navbar = () => {
+const Navbar = ({setSearch }:any) => {
   const [loginPop , setLoginPop]= useState<Boolean>(false)
   return (
     <>
@@ -14,7 +13,7 @@ const Navbar = () => {
         <i className="fa-solid fa-chevron-down"></i>
        </div>
        <div className='bg-black w-100 search-div'>
-        <input type="text" name="" id="" placeholder='find Cars, Mobilephones and More ... ' className='p-2' />
+        <input type="text" name="" id="" placeholder='find Cars, Mobilephones and More ... ' className='p-2'  onChange={(e)=>setSearch(e.target.value)}/>
         <i className="fa-solid fa-magnifying-glass text-white mr-3"></i>
        </div>
        <div className="flex items-center">
