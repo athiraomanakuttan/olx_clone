@@ -1,22 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Product.css';
 import { Link } from 'react-router-dom';
+import { ProductContext } from '../../Pages/Home/Home';
 
 type ProductProps = {
-  productData: {
-    id: number;
-    title: string;
-    price: string;
-    category: string;
-    description: string;
-    image: string;
-    isFeatured: boolean;
-  }[];
   search: string;
   menu:string
 };
 
-const Product: React.FC<ProductProps> = ({ productData, search,menu }) => {
+const Product: React.FC<ProductProps> = ({  search,menu }) => {
+const productData = useContext(ProductContext)
   return (
     <div className="product-list">
       {productData
