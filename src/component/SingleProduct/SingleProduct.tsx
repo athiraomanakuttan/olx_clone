@@ -1,6 +1,6 @@
 import  { useEffect, useState } from 'react';
 import './SingleProduct.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 type ProductType = {
     id: number;
     title: string;
@@ -14,6 +14,7 @@ type ProductType = {
 const SingleProduct = () => {
   const [product, setProduct] = useState<ProductType | null>(null);
   const { id } = useParams<{ id: string }>(); 
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -32,10 +33,9 @@ const SingleProduct = () => {
   if (!product) {
     return <div>Loading...</div>;
   }
-
   return (
     <>
-      <button className='rounded border p-3 border-black m-3'><i className="fa-solid fa-arrow-left"></i></button>
+      <button className='rounded border p-3 border-black m-3' onClick={()=> navigate(-1)} ><i className="fa-solid fa-arrow-left"></i></button>
       <div className="product-detail-container">
       <div className="product-image">
         <img src={product.image} alt={product.title} className="image-detail" />
